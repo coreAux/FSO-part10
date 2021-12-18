@@ -1,11 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
+// import { Text } from "react-native";
+import Text from "./Text";
 
 const RepositoryItem = ({ r }) => {
 
   return (
     <>
-      <Text>Full name: {r.fullName}</Text>
+      <Text fontSize="subheading" fontWeight="bold" >Full name: {r.fullName}</Text>
       <Text>Description: {r.description}</Text>
       <Text>Language: {r.language}</Text>
       <Text>Stars: {r.stargazersCount}</Text>
