@@ -70,7 +70,10 @@ export const LanguageButton = ({ children }) => (
         borderRadius: 8,
       }}
       style={{
-        padding: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
         color: theme.colors.purple,
       }}
     >

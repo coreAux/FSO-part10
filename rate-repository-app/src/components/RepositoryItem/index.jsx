@@ -10,10 +10,10 @@ const RepositoryItem = ({ r }) => {
       <Body>
         <Avatar uri={r.ownerAvatarUrl} />
         <BodyRight>
-          <Text wrapperStyle={{ marginBottom: 5 }} fontSize="subheading" fontWeight="bold" >
+          <Text wrapperStyle={{ marginBottom: 10 }} fontSize="subheading" fontWeight="bold" >
             {r.fullName}
           </Text>
-          <Text wrapperStyle={{ marginBottom:5 }} color="textSecondary">
+          <Text wrapperStyle={{ marginBottom: 10 }} color="textSecondary">
             {r.description}
           </Text>
           <LanguageButton>
