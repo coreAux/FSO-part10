@@ -1,5 +1,5 @@
 import React from "react";
-import { Text as NativeText, StyleSheet } from "react-native";
+import { Text as NativeText, StyleSheet, View } from "react-native";
 
 import theme from "../theme";
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({ color, fontSize, fontWeight, style, wrapperStyle, ...props }) => {
   const textStyle = [
     styles.text,
     color === "textSecondary" && styles.colorTextSecondary,
@@ -34,7 +34,12 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     style,
   ];
 
-  return <NativeText style={textStyle} {...props} />;
+  const viewStyle = [
+    wrapperStyle,
+    // { flexDirection: 'row' }
+  ];
+
+  return <View style={viewStyle}><NativeText style={textStyle} {...props} /></View>;
 };
 
 export default Text;

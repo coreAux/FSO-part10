@@ -1,9 +1,11 @@
 const theme = {
   colors: {
     textPrimary: "#24292e",
-    textSecondary: "#586069",
+    textSecondary: "hsl(300, 100%, 20%)",
     primary: "#0366d6",
-    purple: "#880292",
+    purple: "hsl(300, 100%, 25%)",
+    purpleMedium: "hsl(320, 60%, 75%)",
+    purpleLight: "hsl(300, 100%, 95%)",
   },
   fontSizes: {
     body: 14,
