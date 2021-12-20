@@ -11,9 +11,10 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     backgroundColor: theme.colors.purple,
     height: 90,
+    marginBottom: 10,
   },
   pressable: {
-    backgroundColor: "rgba(255,255,255,.2)",
+    backgroundColor: "rgba(255,255,255,.1)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
