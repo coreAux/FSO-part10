@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   error: {
-    color: "red"
+    backgroundColor: "#d73a4a",
+    color: "red",
+    borderColor: "red",
+    borderWidth: 1,
   },
 });
 

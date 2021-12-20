@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 const theme = {
   colors: {
     textPrimary: "#24292e",
@@ -6,13 +8,19 @@ const theme = {
     purple: "hsl(300, 100%, 25%)",
     purpleMedium: "hsl(320, 60%, 75%)",
     purpleLight: "hsl(300, 100%, 95%)",
+    disabledPurple: "hsl(300, 20%, 25%)",
+    disabledPurpleMedium: "hsl(320, 20%, 75%)",
   },
   fontSizes: {
     body: 14,
     subheading: 16,
   },
   fonts: {
-    main: "System",
+    main: Platform.select({
+      android: "Roboto",
+      ios: "Arial",
+      default: "System"
+    }),
   },
   fontWeights: {
     normal: "400",

@@ -18,23 +18,33 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: theme.colors.purple
   },
-  error: {
-    color: "red"
+  buttonDisabled: {
+    backgroundColor: theme.colors.disabledPurpleMedium,
   },
+  textDisabled: {
+    color: theme.colors.disabledPurple,
+  }
 });
 
-const Button = ({ style, text, ...props }) => {
+const Button = ({ style, text, onPress, disabled, ...props }) => {
   const buttonStyle = [
     styles.button,
     style,
+    disabled && styles.buttonDisabled,
+  ];
+
+  const textStyle = [
+    styles.text,
+    disabled && styles.textDisabled
   ];
 
   return (
     <Pressable
+      onPress={onPress}
       style={buttonStyle}
       {...props}
     >
-      <Text fontWeight="bold" style={styles.text}>{text}</Text>
+      <Text fontWeight="bold" style={textStyle}>{text}</Text>
     </Pressable>
   );
 };
