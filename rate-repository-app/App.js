@@ -10,6 +10,8 @@ const apolloClient = createApolloClient();
 
 export default function App() {
   // console.log('\x1b[36m%s\x1b[0m', "Running :)");
+  // console.log("Constants: ", Constants.manifest);
+
   return (
     <>
       <NativeRouter>
