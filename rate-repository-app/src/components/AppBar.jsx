@@ -2,19 +2,19 @@ import React from "react";
 import { Pressable, ScrollView, View, StyleSheet } from "react-native";
 import { useHistory } from "react-router-native";
 import theme from "../theme";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 
 import Text from "./Text";
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: theme.colors.purple,
-    height: 90,
+    height: 50,
     marginBottom: 10,
   },
   pressable: {
-    backgroundColor: "rgba(255,255,255,.1)",
+    backgroundColor: theme.colors.purpleMedium,
+    borderRadius: 8,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   tabText: {
-    color: "#ffffff"
+    color: theme.colors.purple,
   }
 });
 

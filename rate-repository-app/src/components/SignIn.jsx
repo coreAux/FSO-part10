@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -41,10 +41,6 @@ const SignIn = () => {
               <FormikTextInput name="password" placeholder="Password" secureTextEntry />
             </View>
             <Button onPress={handleSubmit} disabled={!isValid || !dirty || isSubmitting} text="Sign in"/>
-            <Text>isValid: {isValid ? "true" : "false"}</Text>
-            <Text>isSubmitting: {isSubmitting ? "true" : "false"}</Text>
-            <Text>isDirty: {dirty ? "true" : "false"}</Text>
-            <Text>Disabled: {!isValid || !dirty || isSubmitting ? "true" : "false"}</Text>
           </View>
         )}
       </Formik>

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { Route, Switch, Redirect } from "react-router-native";
 
 import theme from "../theme";
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <AppBar />
       <Switch>
         <Route path="/sign-in" exact>
@@ -29,7 +29,7 @@ const Main = () => {
         </Route>
         <Redirect to="/" />
       </Switch>
-    </View>
+    </SafeAreaView>
   );
 };
 
