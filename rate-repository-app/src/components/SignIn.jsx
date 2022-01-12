@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-native";
+
 import { Formik } from "formik";
 import * as yup from "yup";
 
@@ -10,6 +12,8 @@ import Button from "./Button";
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const history = useHistory();
+
   const validationSchema = yup.object().shape({
     username: yup
       .string()
@@ -27,16 +31,12 @@ const SignIn = () => {
           password: ""
         }}
         onSubmit={ async (values) => {
-          console.log(`Username: ${values.username}`);
-          console.log(`Password: ${values.password}`);
 
           const credentials = { username: values.username, password: values.password };
 
-          console.log("creds: ", credentials);
-
           try {
-            const { data } = await signIn(credentials);
-            console.log("data: ", data);
+            await signIn(credentials);
+            history.push("/");
           } catch (e) {
             console.log("error: ", e);
           }
@@ -48,10 +48,10 @@ const SignIn = () => {
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <View style={{marginTop: 100}}>
             <View style={{marginBottom: 15}}>
-              <FormikTextInput name="username" placeholder="Username" />
+              <FormikTextInput name="username" placeholder="Username" autoCapitalize="none" />
             </View>
             <View style={{marginBottom: 15}}>
-              <FormikTextInput name="password" placeholder="Password" secureTextEntry />
+              <FormikTextInput name="password" placeholder="Password" autoCapitalize="none" secureTextEntry />
             </View>
             <Button onPress={handleSubmit} disabled={!isValid || !dirty || isSubmitting} text="Sign in"/>
           </View>
