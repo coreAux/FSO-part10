@@ -2,7 +2,8 @@ import React from "react";
 import { Pressable, ScrollView, View, StyleSheet } from "react-native";
 import { useHistory } from "react-router-native";
 import theme from "../theme";
-// import Constants from "expo-constants";
+import useAuthorizedUser from "../hooks/useAuthorizedUser";
+import useSignOut from "../hooks/useSignOut";
 
 import Text from "./Text";
 
@@ -33,7 +34,10 @@ const TabBarItem = ({ to, label }) => {
 
   return (
     <Pressable
-      style={styles.pressable}
+      style={({pressed}) => [
+        styles.pressable,
+        pressed && { backgroundColor: theme.colors.purpleLight }
+      ]}
       onPress={() => history.push(to)}
     >
       <Text fontSize="subheading" fontWeight="bold" style={styles.tabText}>
@@ -44,6 +48,8 @@ const TabBarItem = ({ to, label }) => {
 };
 
 const AppBar = () => {
+  const { user } = useAuthorizedUser();
+  const signOut = useSignOut();
 
   return (
     <View style={styles.container}>
@@ -52,10 +58,24 @@ const AppBar = () => {
           to="/"
           label="Repositories"
         />
-        <TabBarItem
+        {!user && <TabBarItem
           to="/sign-in"
           label="Sign in"
-        />
+        />}
+
+        {user && <>
+          <Pressable
+            style={({pressed}) => [
+              styles.pressable,
+              pressed && { backgroundColor: theme.colors.purpleLight }
+            ]}
+            onPress={() => signOut()}
+          >
+            <Text fontSize="subheading" fontWeight="bold" style={styles.tabText}>
+              Sign out
+            </Text>
+          </Pressable>
+        </>}
 
       </ScrollView>
     </View>

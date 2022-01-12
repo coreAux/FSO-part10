@@ -33,7 +33,6 @@ const SignIn = () => {
         onSubmit={ async (values) => {
 
           const credentials = { username: values.username, password: values.password };
-
           try {
             await signIn(credentials);
             history.push("/");

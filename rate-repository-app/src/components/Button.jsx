@@ -41,7 +41,10 @@ const Button = ({ style, text, onPress, disabled, ...props }) => {
   return (
     <Pressable
       onPress={onPress}
-      style={buttonStyle}
+      style={({pressed}) => [
+        buttonStyle,
+        pressed && { backgroundColor: theme.colors.purpleLight }
+      ]}
       {...props}
     >
       <Text fontWeight="bold" style={textStyle}>{text}</Text>

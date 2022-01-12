@@ -7,9 +7,9 @@ class AuthStorage {
 
   async getAccessToken() {
     // Get the access token for the storage
-    const accessToken = await AsyncStorage.getItem(`${this.namepsace}:accessToken`);
+    const accessToken = await AsyncStorage.getItem(`${this.namespace}:accessToken`);
 
-    return accessToken ? JSON.parge(accessToken) : [];
+    return accessToken ? JSON.parse(accessToken) : [];
   }
 
   async setAccessToken(accessToken) {
