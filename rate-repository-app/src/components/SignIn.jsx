@@ -1,12 +1,15 @@
 import React from "react";
-import { View } from "react-native";
-
 import { Formik } from "formik";
 import * as yup from "yup";
+
+import useSignIn from "../hooks/useSignIn";
+
+import { View } from "react-native";
 import FormikTextInput from "./FormikTextInput";
 import Button from "./Button";
 
 const SignIn = () => {
+  const [signIn] = useSignIn();
   const validationSchema = yup.object().shape({
     username: yup
       .string()
@@ -23,11 +26,21 @@ const SignIn = () => {
           username: "",
           password: ""
         }}
-        onSubmit={(values) => {
-          setTimeout(() => {
-            console.log(`Username: ${values.username}`);
-            console.log(`Password: ${values.password}`);
-          }, 3000);
+        onSubmit={ async (values) => {
+          console.log(`Username: ${values.username}`);
+          console.log(`Password: ${values.password}`);
+
+          const credentials = { username: values.username, password: values.password };
+
+          console.log("creds: ", credentials);
+
+          try {
+            const { data } = await signIn(credentials);
+            console.log("data: ", data);
+          } catch (e) {
+            console.log("error: ", e);
+          }
+
         }}
         validationSchema={validationSchema}
         vildateOnMount={true}
