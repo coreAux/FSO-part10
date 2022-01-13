@@ -10,9 +10,7 @@ import { View } from "react-native";
 import FormikTextInput from "./FormikTextInput";
 import Button from "./Button";
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const history = useHistory();
+export const SignInContainer = ({ onSubmit }) => {
 
   const validationSchema = yup.object().shape({
     username: yup
@@ -30,34 +28,41 @@ const SignIn = () => {
           username: "",
           password: ""
         }}
-        onSubmit={ async (values) => {
-
-          const credentials = { username: values.username, password: values.password };
-          try {
-            await signIn(credentials);
-            history.push("/");
-          } catch (e) {
-            console.log("error: ", e);
-          }
-
-        }}
+        onSubmit={onSubmit}
         validationSchema={validationSchema}
         vildateOnMount={true}
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
           <View style={{marginTop: 100}}>
             <View style={{marginBottom: 15}}>
-              <FormikTextInput name="username" placeholder="Username" autoCapitalize="none" />
+              <FormikTextInput testID="usernameField" name="username" placeholder="Username" autoCapitalize="none" />
             </View>
             <View style={{marginBottom: 15}}>
-              <FormikTextInput name="password" placeholder="Password" autoCapitalize="none" secureTextEntry />
+              <FormikTextInput testID="passwordField" name="password" placeholder="Password" autoCapitalize="none" secureTextEntry />
             </View>
-            <Button onPress={handleSubmit} disabled={!isValid || !dirty || isSubmitting} text="Sign in"/>
+            <Button testID="submitButton" onPress={handleSubmit} disabled={!isValid || !dirty || isSubmitting} text="Sign in"/>
           </View>
         )}
       </Formik>
     </View>
   );
+};
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const history = useHistory();
+
+  const onSubmit = async (values) => {
+    const credentials = { username: values.username, password: values.password };
+    try {
+      await signIn(credentials);
+      history.push("/");
+    } catch (e) {
+      console.log("error: ", e);
+    }
+  };
+
+  return <SignInContainer onSubmit={onSubmit}/>;
 };
 
 export default SignIn;

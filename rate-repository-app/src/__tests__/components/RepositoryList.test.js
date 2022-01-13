@@ -50,18 +50,12 @@ describe("RepositoryList", () => {
         ],
       };
 
-      const { debug, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
-
-      // console.log(debug());
+      const { getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
 
       getAllByTestId("repoItemBody").forEach((r, i) => {
         expect(r).toHaveTextContent(repositories.edges[i].node.fullName);
         expect(r).toHaveTextContent(repositories.edges[i].node.description);
         expect(r).toHaveTextContent(repositories.edges[i].node.language);
-        // expect(r).toHaveTextContent(returnK(repositories.edges[i].node.forksCount)});
-        // expect(r).toHaveTextContent(returnK(repositories.edges[i].node.stargazersCount));
-        // expect(r).toHaveTextContent(returnK(repositories.edges[i].node.ratingAverage));
-        // expect(r).toHaveTextContent(returnK(repositories.edges[i].node.reviewCount));
       });
 
       getAllByTestId("stargazersCount").forEach((r, i) => {
@@ -79,8 +73,6 @@ describe("RepositoryList", () => {
       getAllByTestId("reviewCount").forEach((r, i) => {
         expect(r).toHaveTextContent(returnK(repositories.edges[i].node.reviewCount));
       });
-
-      expect(1).toBe(1);
 
     });
   });
