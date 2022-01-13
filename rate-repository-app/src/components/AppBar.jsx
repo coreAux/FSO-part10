@@ -58,10 +58,16 @@ const AppBar = () => {
           to="/"
           label="Repositories"
         />
-        {!user && <TabBarItem
+      {!user && <>
+        <TabBarItem
           to="/sign-in"
           label="Sign in"
-        />}
+        />
+        <TabBarItem
+          to="/sign-up"
+          label="Sign up"
+        />
+      </>}
 
         {user && <>
           <TabBarItem

@@ -10,6 +10,7 @@ import RepositoryList from "./RepositoryList";
 import CreateReview from "./CreateReview";
 import SingleRepository from "./SingleRepository";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +32,9 @@ const Main = () => {
       break;
     case ("/sign-in"):
       title = "Sign in";
+      break;
+    case ("/sign-up"):
+      title = "Sign up";
       break;
     case ("/"):
       title = "Repositories";
@@ -61,6 +65,9 @@ const Main = () => {
         </Route>
         <Route path="/sign-in" exact>
           <SignIn />
+        </Route>
+        <Route path="/sign-up" exact>
+          <SignUp />
         </Route>
         <Route path="/:id" exact>
           <SingleRepository />
