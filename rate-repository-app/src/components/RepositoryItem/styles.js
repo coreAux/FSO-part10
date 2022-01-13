@@ -3,7 +3,7 @@ import { View, Image } from "react-native";
 import Text from "../Text";
 import theme from "../../theme";
 
-const returnK = (int) => {
+export const returnK = (int) => {
   let returnedInt = int;
 
   switch (true) {
@@ -16,8 +16,9 @@ const returnK = (int) => {
   }
 };
 
-export const RepositoryItemWrapper = ({ children }) => (
+export const RepositoryItemWrapper = ({ testID, children }) => (
   <View
+    testID={testID}
     style={{
       backgroundColor:theme.colors.purpleLight,
       borderRadius:4,
@@ -30,8 +31,9 @@ export const RepositoryItemWrapper = ({ children }) => (
   </View>
 );
 
-export const Body = ({ children }) => (
+export const Body = ({ testID, children }) => (
   <View
+    testID={testID}
     style={{
       flexDirection: "row",
       alignItems: "flex-start",
@@ -82,8 +84,9 @@ export const LanguageButton = ({ children }) => (
   </View>
 );
 
-export const Footer = ({ children }) => (
+export const Footer = ({ testID, children }) => (
   <View
+    testID={testID}
     style={{
       flexDirection: "row",
       alignItems: "center",
@@ -94,8 +97,8 @@ export const Footer = ({ children }) => (
   </View>
 );
 
-export const FooterItem = ({ number, text }) => (
-  <View style={{alignItems:"center"}}>
+export const FooterItem = ({ testID, number, text }) => (
+  <View testID={testID} style={{alignItems:"center"}}>
     <Text
       fontWeight="bold"
       style={{marginBottom:2}}
