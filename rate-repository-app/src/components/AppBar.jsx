@@ -64,6 +64,10 @@ const AppBar = () => {
         />}
 
         {user && <>
+          <TabBarItem
+            to="create-review"
+            label="Create a review"
+          />
           <Pressable
             style={({pressed}) => [
               styles.pressable,

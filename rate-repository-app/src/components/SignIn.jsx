@@ -33,7 +33,7 @@ export const SignInContainer = ({ onSubmit }) => {
         vildateOnMount={true}
       >
         {({ handleSubmit, isValid, isSubmitting, dirty }) => (
-          <View style={{marginTop: 100}}>
+          <View>
             <View style={{marginBottom: 15}}>
               <FormikTextInput testID="usernameField" name="username" placeholder="Username" autoCapitalize="none" />
             </View>

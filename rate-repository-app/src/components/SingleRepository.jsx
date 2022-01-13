@@ -10,6 +10,7 @@ import Button from "./Button";
 import Text from "./Text";
 import RepositoryItem from "./RepositoryItem";
 import ItemSeparator from "./ItemSeparator";
+import Loader from "./Loader";
 
 const RepositoryHeader = ({ r }) => (
   <View>
@@ -119,11 +120,7 @@ const SingleRepository = () => {
     );
   }
 
-  return  (
-    <Text>
-      Loading...
-    </Text>
-  );
+  return <Loader />;
 
 };
 
