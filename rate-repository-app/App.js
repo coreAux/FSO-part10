@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NativeRouter } from "react-router-native";
+import { Provider as PaperProvider } from 'react-native-paper';
 import { ApolloProvider } from "@apollo/client";
 
 import Main from "./src/components/Main";
@@ -20,7 +21,9 @@ export default function App() {
       <NativeRouter>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
-            <Main />
+            <PaperProvider>
+              <Main />
+            </PaperProvider>
           </AuthStorageContext.Provider>
         </ApolloProvider>
       </NativeRouter>
