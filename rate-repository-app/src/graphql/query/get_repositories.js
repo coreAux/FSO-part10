@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_REPOSITORIES = gql`
-  query repositories ($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String) {
-    repositories (orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword) {
+  query repositories ($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String, $first: Int, $after: String) {
+    repositories (orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword, first: $first, after: $after) {
       edges {
         node {
           id
@@ -15,6 +15,12 @@ const GET_REPOSITORIES = gql`
           reviewCount
           ratingAverage
         }
+        cursor
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
       }
     }
   }

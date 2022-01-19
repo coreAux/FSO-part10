@@ -96,7 +96,7 @@ const ReviewItem = ({ r }) => {
 
 const SingleRepository = () => {
   const { id } = useParams();
-  const { repository, loading } = useRepository(id);
+  const { repository, loading, fetchMore } = useRepository({ id: id, first: 4 });
 
   const reviews = !loading && repository && repository.reviews.edges.map((r) => r.node).sort((a, b) => {
     const c = new Date(b.createdAt);
@@ -116,6 +116,8 @@ const SingleRepository = () => {
         keyExtractor={r => r.id}
         ListHeaderComponent={() => <RepositoryHeader r={repository} />}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={fetchMore}
+        onEndReachedThreshold={0.5}
       />
     );
   }

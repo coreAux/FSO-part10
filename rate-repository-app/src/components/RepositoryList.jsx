@@ -79,7 +79,7 @@ const RepositoryHeader = ({ dispatch, filter, searchQuery, setSearchQuery }) => 
   );
 };
 
-export const RepositoryListContainer = ({ repositories, dispatch, filter, searchQuery, setSearchQuery }) => {
+export const RepositoryListContainer = ({ repositories, onEndReach, dispatch, filter, searchQuery, setSearchQuery }) => {
   const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : [];
 
   return (
@@ -97,6 +97,8 @@ export const RepositoryListContainer = ({ repositories, dispatch, filter, search
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={r => r.id}
       ListHeaderComponent={<RepositoryHeader dispatch={dispatch} filter={filter} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
     </>
   );
@@ -145,12 +147,22 @@ const RepositoryList = () => {
   });
   const [searchQuery, setSearchQuery] = React.useState("");
   const [debouncedSearchQuery] = useDebounce(searchQuery, 1000);
-  const { repositories, loading } = useRepositories(filter.orderBy, filter.orderDirection, debouncedSearchQuery);
+  const { repositories, loading, fetchMore } = useRepositories({
+    orderBy: filter.orderBy,
+    orderDirection: filter.orderDirection,
+    searchKeyword: debouncedSearchQuery,
+    first: 1
+  });
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   if (!loading && repositories) {
     return (
       <RepositoryListContainer
         repositories={repositories}
+        onEndReach={onEndReach}
         dispatch={dispatch}
         filter={filter}
         searchQuery={searchQuery}

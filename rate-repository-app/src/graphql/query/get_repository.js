@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_REPOSITORY = gql`
-  query get_repository ($id: ID!) {
-    repository (id:$id) {
+  query get_repository ($id: ID!, $first: Int, $after: String) {
+    repository (id: $id) {
       id
       url
       ownerAvatarUrl
@@ -13,7 +13,7 @@ const GET_REPOSITORY = gql`
       forksCount
       reviewCount
       ratingAverage
-      reviews {
+      reviews(first: $first, after: $after) {
         edges {
           node {
             id
@@ -25,6 +25,12 @@ const GET_REPOSITORY = gql`
               username
             }
           }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
         }
       }
     }
