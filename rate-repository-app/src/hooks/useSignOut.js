@@ -6,6 +6,9 @@ const useSignIn = () => {
   const authStorage = useAuthStorage();
 
   const signOut = async () => {
+    console.log("Trying to sign out...");
+    const accessToken = await authStorage.getAccessToken();
+    console.log("accessToken: ", accessToken);
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
   };

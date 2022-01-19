@@ -8,6 +8,7 @@ import AppBar from "./AppBar";
 import Text from "./Text";
 import RepositoryList from "./RepositoryList";
 import CreateReview from "./CreateReview";
+import UserReviews from "./UserReviews";
 import SingleRepository from "./SingleRepository";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -29,6 +30,9 @@ const Main = () => {
   switch (location.pathname) {
     case ("/create-review"):
       title = "Create a review";
+      break;
+    case ("/my-reviews"):
+      title = "My reviews";
       break;
     case ("/sign-in"):
       title = "Sign in";
@@ -62,6 +66,9 @@ const Main = () => {
       <Switch>
         <Route path="/create-review" exact>
           <CreateReview />
+        </Route>
+        <Route path="/my-reviews" exact>
+          <UserReviews />
         </Route>
         <Route path="/sign-in" exact>
           <SignIn />

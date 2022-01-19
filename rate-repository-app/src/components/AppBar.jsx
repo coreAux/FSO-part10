@@ -48,7 +48,8 @@ const TabBarItem = ({ to, label }) => {
 };
 
 const AppBar = () => {
-  const { user } = useAuthorizedUser();
+  const { user } = useAuthorizedUser({ includeReviews: false });
+  console.log("user: ", user);
   const signOut = useSignOut();
 
   return (
@@ -71,8 +72,12 @@ const AppBar = () => {
 
         {user && <>
           <TabBarItem
-            to="create-review"
+            to="/create-review"
             label="Create a review"
+          />
+          <TabBarItem
+            to="/my-reviews"
+            label="My reviews"
           />
           <Pressable
             style={({pressed}) => [

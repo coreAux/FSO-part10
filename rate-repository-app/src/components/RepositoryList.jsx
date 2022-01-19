@@ -151,7 +151,7 @@ const RepositoryList = () => {
     orderBy: filter.orderBy,
     orderDirection: filter.orderDirection,
     searchKeyword: debouncedSearchQuery,
-    first: 1
+    first: 4
   });
 
   const onEndReach = () => {
