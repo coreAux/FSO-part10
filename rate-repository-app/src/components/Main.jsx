@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
 const Main = () => {
   const location = useLocation();
 
-  // console.log("location: ", location);
   let title = "";
 
   switch (location.pathname) {

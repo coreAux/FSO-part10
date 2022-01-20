@@ -69,7 +69,6 @@ const SignUp = () => {
   const onSubmit = async (values) => {
     const user = { username: values.username, password: values.password };
     try {
-      console.log(user);
       await signUp(user);
       await signIn(user);
       history.push("/");

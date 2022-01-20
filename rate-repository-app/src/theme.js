@@ -10,6 +10,7 @@ const theme = {
     purpleLight: "hsl(300, 100%, 95%)",
     disabledPurple: "hsl(300, 20%, 25%)",
     disabledPurpleMedium: "hsl(320, 20%, 75%)",
+    red: "hsl(0, 100%, 60%)",
   },
   fontSizes: {
     body: 14,

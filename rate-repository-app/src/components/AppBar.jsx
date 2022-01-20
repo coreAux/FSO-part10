@@ -49,7 +49,7 @@ const TabBarItem = ({ to, label }) => {
 
 const AppBar = () => {
   const { user } = useAuthorizedUser({ includeReviews: false });
-  console.log("user: ", user);
+
   const signOut = useSignOut();
 
   return (

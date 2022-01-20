@@ -1,89 +1,85 @@
 import React from "react";
 import useAuthorizedUser from "../hooks/useAuthorizedUser";
+import { useHistory } from "react-router-native";
+import useDeleteReview from "../hooks/useDeleteReview";
 
-import { FlatList, View } from "react-native";
+import { FlatList, View, Alert } from "react-native";
 import ItemSeparator from "./ItemSeparator";
+
+import ReviewItem from "./ReviewItem";
+import Button from "./Button";
 import Loader from "./Loader";
-import Text from "./Text";
 
 import theme from "../theme";
 
-const ReviewItem = ({ r }) => {
-  // console.log("r: ", r);
-  // console.log(r.user.username);
-  // console.log(r.createdAt);
-  const date = new Date(r.createdAt);
-  const year = date.getFullYear();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const day = date.getDate();
+const Buttons = ({ repoId, reviewId, refetch }) => {
+  const [deleteReview] = useDeleteReview();
+  const history = useHistory();
+
+  const confirmDeleteReview = (id) => {
+    Alert.alert(
+      "Delete review",
+      "Are you sure you want to delete this review?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel pressed"),
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            deleteReview(id);
+            refetch({ includeReviews: true });
+          },
+          style: "destructive"
+        }
+      ]
+    );
+  };
 
   return (
     <View
       style={{
-        backgroundColor:theme.colors.purpleLight,
-        borderRadius:4,
-        padding:10,
-        marginLeft: 4,
-        marginRight: 4
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
-      <View
+      <Button
         style={{
-          flexDirection: "row",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          marginBottom: 10,
+          paddingLeft: 10,
+          paddingRight: 10
         }}
-      >
-        <View
-          style={{
-            width: 70,
-            height: 70,
-            borderRadius: 35,
-            borderWidth: 2,
-            borderColor: theme.colors.purple,
-            flexGrow: 0,
-            marginRight: 10,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <Text
-            fontSize="subheading"
-            fontWeight="bold"
-            style={{
-              color: theme.colors.purple
-            }}
-          >
-            {r.rating}
-          </Text>
-        </View>
-        <View
-          style={{ flexShrink: 1 }}
-        >
-          <Text fontWeight="bold" wrapperStyle={{ marginBottom: 10 }}>{r.user.username}</Text>
-          <Text
-            color="textSecondary"
-            wrapperStyle={{ marginBottom: 10 }}
-          >
-            {month} {day}, {year}
-          </Text>
-          <Text>{r.text}</Text>
-        </View>
-      </View>
+        text="View repository"
+        onPress={() => history.push(`/${repoId}`)}
+        disabled={false}
+      />
+      <Button
+        style={{
+          backgroundColor: theme.colors.purple,
+          paddingLeft: 10,
+          paddingRight: 10
+        }}
+        textStyle={{
+          color: "white"
+        }}
+        text="Delete review"
+        onPress={() => confirmDeleteReview(reviewId)}
+        disabled={false}
+      />
     </View>
   );
 };
 
 const UserReviews = () => {
-  const { reviews, loading } = useAuthorizedUser({ includeReviews: true });
+  const { reviews, loading, refetch } = useAuthorizedUser({ includeReviews: true });
 
   if (!loading && reviews) {
     return (
       <FlatList
         data={reviews}
-        renderItem={({ item }) => <ReviewItem r={item} />}
+        renderItem={({ item }) => <ReviewItem r={item} buttons={<Buttons repoId={item.repositoryId} reviewId={item.id} refetch={refetch} />} />}
         keyExtractor={r => r.id}
         ItemSeparatorComponent={ItemSeparator}
       />

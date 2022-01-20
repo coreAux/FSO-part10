@@ -26,15 +26,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const Button = ({ style, text, onPress, disabled, ...props }) => {
+const Button = ({ style, text, textStyle, onPress, disabled, ...props }) => {
   const buttonStyle = [
     styles.button,
     style,
     disabled && styles.buttonDisabled,
   ];
 
-  const textStyle = [
+  const textStyles = [
     styles.text,
+    textStyle,
     disabled && styles.textDisabled
   ];
 
@@ -47,7 +48,7 @@ const Button = ({ style, text, onPress, disabled, ...props }) => {
       ]}
       {...props}
     >
-      <Text fontWeight="bold" style={textStyle}>{text}</Text>
+      <Text fontWeight="bold" style={textStyles}>{text}</Text>
     </Pressable>
   );
 };

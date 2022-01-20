@@ -34,10 +34,6 @@ const useRepositories = (variables) => {
     });
   };
 
-  // console.log("data: ", data);
-  // console.log("error: ", error);
-  // console.log("loading: ", loading);
-
   return { repositories, fetchMore: handleFetchMore, error, loading, refetch, ...result };
 };
 
